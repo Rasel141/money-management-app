@@ -4,8 +4,6 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
-const userRouter = require('./routers/userRoute')
-
 // call express
 const app = express()
 
@@ -19,8 +17,9 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-// User Router Path
-app.use('/api/users', userRouter)
+//Router Path
+app.use('/api/users', require('./routers/userRoute'))
+app.use('/api/transactions', require('./routers/transactionRoute'))
 
 // Create Root Route
 app.get('/', (req, res) => {
